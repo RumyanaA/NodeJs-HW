@@ -11,19 +11,25 @@ app.listen(port, () => {
 app.use(express.json());
 app.locals.users = [];
 
-router.post("/user", function (req: express.Request, res: express.Response): void {
-  app.locals.users.push(req.body);
-  res.status(204).send();
-});
+router.post(
+  "/user",
+  function (req: express.Request, res: express.Response): void {
+    app.locals.users.push(req.body);
+    res.status(204).send();
+  }
+);
 
-function getAutoSuggestUsers(loginSubstring:string,limit:number){
+function getAutoSuggestUsers(loginSubstring: string, limit: number) {
   app.locals.users.sort((a, b) => a.login.localeCompare(b.login));
-  let filteredUsers = app.locals.users.filter(function (user:User){
-    if(this.count<limit && user.login.includes(loginSubstring)){
-      this.count++;
-      return true;
-    }
-  },{count:0});
+  let filteredUsers = app.locals.users.filter(
+    function (user: User) {
+      if (this.count < limit && user.login.includes(loginSubstring)) {
+        this.count++;
+        return true;
+      }
+    },
+    { count: 0 }
+  );
   return filteredUsers;
 }
 router.get(
@@ -31,8 +37,8 @@ router.get(
   function (req: express.Request, res: express.Response): void {
     const loginSubstring = req.query.loginSubstring;
     const limit = 5;
-   const suggestedUsers:User[] = getAutoSuggestUsers(loginSubstring,limit);
-   res.json(suggestedUsers);
+    const suggestedUsers: User[] = getAutoSuggestUsers(loginSubstring, limit);
+    res.json(suggestedUsers);
   }
 );
 router.get(
