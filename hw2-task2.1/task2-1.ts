@@ -1,5 +1,7 @@
 import { User } from "./userModel";
 import express from "express";
+import Joi from "joi";
+import validateSchema from "./utils.js";
 const router = express.Router();
 
 const app = express();
@@ -11,8 +13,17 @@ app.listen(port, () => {
 app.use(express.json());
 app.locals.users = [];
 
+const userSchema = Joi.object().keys({
+  id: Joi.string().required(),
+  login: Joi.required(),
+  password: Joi.string().regex(/^[A-Za-z0-9]+/),
+  age: Joi.number().integer().min(4).max(130),
+  isDeleted: Joi.boolean().required(),
+});
+
 router.post(
   "/user",
+  validateSchema(userSchema),
   function (req: express.Request, res: express.Response): void {
     app.locals.users.push(req.body);
     res.status(204).send();
@@ -32,6 +43,7 @@ function getAutoSuggestUsers(loginSubstring: string, limit: number) {
   );
   return filteredUsers;
 }
+
 router.get(
   "/users",
   function (req: express.Request, res: express.Response): void {
@@ -41,6 +53,7 @@ router.get(
     res.json(suggestedUsers);
   }
 );
+
 router.get(
   "/user/:id",
   function (req: express.Request, res: express.Response): void {
@@ -57,17 +70,21 @@ router.get(
   }
 );
 
-router.put("/user/:id", function (req: express.Request, res: express.Response) {
-  let foundUserIndex: number = app.locals.users.findIndex(
-    (user: User) => user.id === req.params.id
-  );
-  if (foundUserIndex === -1) {
-    app.locals.users.push(req.body);
-  } else {
-    app.locals.users[foundUserIndex] = req.body;
+router.put(
+  "/user/:id",
+  validateSchema(userSchema),
+  function (req: express.Request, res: express.Response) {
+    let foundUserIndex: number = app.locals.users.findIndex(
+      (user: User) => user.id === req.params.id
+    );
+    if (foundUserIndex === -1) {
+      app.locals.users.push(req.body);
+    } else {
+      app.locals.users[foundUserIndex] = req.body;
+    }
+    res.status(204).send();
   }
-  res.status(204).send();
-});
+);
 
 router.delete(
   "/user/:id",

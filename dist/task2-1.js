@@ -1,4 +1,6 @@
 import express from 'express';
+import Joi from 'joi';
+import validateSchema from './utils.js';
 const router = express.Router();
 const app = express();
 const port = 3000;
@@ -7,7 +9,14 @@ app.listen(port, () => {
 });
 app.use(express.json());
 app.locals.users = [];
-router.post('/user', (req, res) => {
+const userSchema = Joi.object().keys({
+    id: Joi.string().required(),
+    login: Joi.required(),
+    password: Joi.string().regex(/^[A-Za-z0-9]+/),
+    age: Joi.number().integer().min(4).max(130),
+    isDeleted: Joi.boolean().required()
+});
+router.post('/user', validateSchema(userSchema), (req, res) => {
     app.locals.users.push(req.body);
     res.status(204).send();
 });
@@ -37,7 +46,7 @@ router.get('/user/:id', (req, res) => {
         res.json(foundUser);
     }
 });
-router.put('/user/:id', (req, res) => {
+router.put('/user/:id', validateSchema(userSchema), (req, res) => {
     const foundUserIndex = app.locals.users.findIndex((user) => user.id === req.params.id);
     if (foundUserIndex === -1) {
         app.locals.users.push(req.body);
