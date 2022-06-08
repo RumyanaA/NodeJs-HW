@@ -1,4 +1,4 @@
-import { ObjectSchema } from "joi";
+import { ObjectSchema } from 'joi';
 declare const validateSchema: (schema: ObjectSchema<any>) => (req: {
     body: any;
 }, res: {
@@ -6,7 +6,7 @@ declare const validateSchema: (schema: ObjectSchema<any>) => (req: {
         (): any;
         new (): any;
         json: {
-            (arg0: {
+            (arg1: {
                 status: string;
                 errors: any;
             }): any;
