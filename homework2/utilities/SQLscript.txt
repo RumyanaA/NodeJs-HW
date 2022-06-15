@@ -1,0 +1,17 @@
+CREATE TABLE Users (
+    id varchar(255),
+    login varchar(255),
+    password varchar(255),
+    age int,
+	isDeleted Boolean,
+	PRIMARY KEY (id)
+);
+
+INSERT INTO Users (id, login, password, age, isDeleted)
+VALUES ('user7', 'aloe', 'password7', '22', false);
+
+INSERT INTO Users
+VALUES ('user8', 'alloy', 'password8', '23', false);
+
+INSERT INTO Users
+VALUES ('user9', 'username9', 'password9', '24', false);
