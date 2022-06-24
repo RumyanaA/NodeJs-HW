@@ -1,5 +1,13 @@
 import express from 'express';
-import routes from '../Routes/routes.js';
+import routes from './routes/userRoutes.js';
+import sequelize from './config/dbConnect.js';
+try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+}
+catch (error) {
+    console.error('Unable to connect to the database:', error);
+}
 const app = express();
 const port = 3000;
 app.use(express.json());
