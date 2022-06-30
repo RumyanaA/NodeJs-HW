@@ -32,3 +32,4 @@ Group.init(
     },
     { sequelize, timestamps: false }
 );
+
