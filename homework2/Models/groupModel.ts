@@ -1,30 +1,23 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/dbConnect.js';
 
-const User = sequelize.define(
-    'Users',
+const Group = sequelize.define(
+    'Groups',
     {
         id: {
             type: DataTypes.STRING,
             primaryKey: true,
             allowNull: false
         },
-        login: {
+        name: {
             type: DataTypes.STRING
         },
-        password: {
-            type: DataTypes.STRING
-        },
-        age: {
-            type: DataTypes.INTEGER
-        },
-        isDeleted: {
-            type: DataTypes.BOOLEAN
+        permissions: {
+            type: DataTypes.ARRAY(DataTypes.STRING)
         }
     },
     {
         timestamps: false
     }
 );
-
-export default User;
+export default Group;

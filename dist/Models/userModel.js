@@ -1,9 +1,10 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/dbConnect.js';
-const User = sequelize.define('User', {
+const User = sequelize.define('Users', {
     id: {
         type: DataTypes.STRING,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false
     },
     login: {
         type: DataTypes.STRING
@@ -17,7 +18,8 @@ const User = sequelize.define('User', {
     isDeleted: {
         type: DataTypes.BOOLEAN
     }
+}, {
+    timestamps: false
 });
-await User.sync();
 export default User;
 //# sourceMappingURL=userModel.js.map

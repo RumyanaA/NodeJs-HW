@@ -1,5 +1,5 @@
 import { User as TypeUser } from '../types/userType';
-import User from '../models/userModel.js';
+import { User, User_Group } from '../models/index.js';
 import { Op } from 'sequelize';
 
 const createUser = async (userDTO: TypeUser): Promise<void> => {
@@ -41,6 +41,13 @@ const deleteUser = async (userID: string): Promise<number> => {
         }
     );
     const affectedCount = res[0];
+    if (affectedCount) {
+        await User_Group.destroy({
+            where: {
+                UserId: userID
+            }
+        });
+    }
     return affectedCount;
 };
 export {
