@@ -1,9 +1,7 @@
-import { Group as TypeGroup } from '../types/groupType';
-import Group from '../models/groupModel.js';
 import sequelize from '../config/dbConnect.js';
-import { User_Group } from '../models/index.js';
-import { getUser } from 'homework2/services/userServices';
-import { User } from 'homework2/types/userType';
+import { Group as TypeGroup } from '../types/groupType';
+import { User_Group, Group } from '../models/index.js';
+import { getUser } from '../services/userServices.js';
 
 const createGroup = async (groupDTO: TypeGroup): Promise<void> => {
     await Group.create(groupDTO);
@@ -35,12 +33,13 @@ const insertUsersToGroup = async (group_id: string, user_ids: string[]) => {
         await sequelize.transaction(async (t) => {
             await Promise.all(
                 user_ids.map(async (userId) => {
-                    // const user = await getUser(userId);
-                    // if(user.isDeleted)
-                    await User_Group.create(
-                        { GroupId: group_id, UserId: userId },
-                        { transaction: t }
-                    );
+                    const user = await getUser(userId);
+                    if (!user.isDeleted) {
+                        await User_Group.create(
+                            { GroupId: group_id, UserId: userId },
+                            { transaction: t }
+                        );
+                    }
                 })
             );
         });

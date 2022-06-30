@@ -1,6 +1,6 @@
-import Group from '../models/groupModel.js';
 import sequelize from '../config/dbConnect.js';
-import { User_Group } from '../models/index.js';
+import { User_Group, Group } from '../models/index.js';
+import { getUser } from '../services/userServices.js';
 const createGroup = async (groupDTO) => {
     await Group.create(groupDTO);
 };
@@ -23,7 +23,10 @@ const insertUsersToGroup = async (group_id, user_ids) => {
     try {
         await sequelize.transaction(async (t) => {
             await Promise.all(user_ids.map(async (userId) => {
-                await User_Group.create({ GroupId: group_id, UserId: userId }, { transaction: t });
+                const user = await getUser(userId);
+                if (!user.isDeleted) {
+                    await User_Group.create({ GroupId: group_id, UserId: userId }, { transaction: t });
+                }
             }));
         });
     }
@@ -38,7 +41,6 @@ const deleteGroup = async (groupID) => {
         }
     });
     const affectedCount = res;
-    console.log(res);
     return affectedCount;
 };
 export { createGroup, getGroups, getGroup, updateGroup as updateDBGroup, insertUsersToGroup, deleteGroup };

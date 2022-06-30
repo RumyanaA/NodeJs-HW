@@ -1,13 +1,33 @@
-import { DataTypes } from 'sequelize';
 import sequelize from '../config/dbConnect.js';
+import { UserI } from '../interfaces/userInterface';
+import { AllowNull, Column, PrimaryKey } from 'sequelize-typescript';
+import { Model } from 'sequelize';
+import { DataTypes } from 'sequelize';
 
-const User = sequelize.define(
-    'Users',
+export default class User extends Model implements UserI {
+  @PrimaryKey
+  @Column
+      id: string;
+  @AllowNull(false)
+  @Column
+      login: string;
+
+  @Column
+      password: string;
+
+  @Column
+      age: number;
+
+  @Column
+      isDeleted: boolean;
+}
+
+User.init(
     {
         id: {
             type: DataTypes.STRING,
-            primaryKey: true,
-            allowNull: false
+            allowNull: false,
+            primaryKey: true
         },
         login: {
             type: DataTypes.STRING
@@ -22,9 +42,5 @@ const User = sequelize.define(
             type: DataTypes.BOOLEAN
         }
     },
-    {
-        timestamps: false
-    }
+    { sequelize, timestamps: false }
 );
-
-export default User;
