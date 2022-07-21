@@ -1,4 +1,4 @@
-import User from '../models/userModel.js';
+import { User, User_Group } from '../models/index.js';
 import { Op } from 'sequelize';
 const createUser = async (userDTO) => {
     await User.create(userDTO);
@@ -33,6 +33,13 @@ const deleteUser = async (userID) => {
         }
     });
     const affectedCount = res[0];
+    if (affectedCount) {
+        await User_Group.destroy({
+            where: {
+                UserId: userID
+            }
+        });
+    }
     return affectedCount;
 };
 export { createUser, getAutoSuggestUsers, getUser as getDBuser, updateUser as updateDBuser, deleteUser };

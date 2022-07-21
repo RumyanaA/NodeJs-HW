@@ -8,50 +8,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import sequelize from '../config/dbConnect.js';
-import { AllowNull, Column, PrimaryKey } from 'sequelize-typescript';
-import { Model } from 'sequelize';
 import { DataTypes } from 'sequelize';
-export default class User extends Model {
+import { Column } from 'sequelize-typescript';
+import { Model } from 'sequelize';
+import User from './userModel.js';
+import Group from './groupModel.js';
+export default class User_Group extends Model {
 }
 __decorate([
-    PrimaryKey,
     Column,
     __metadata("design:type", String)
-], User.prototype, "id", void 0);
-__decorate([
-    AllowNull(false),
-    Column,
-    __metadata("design:type", String)
-], User.prototype, "login", void 0);
+], User_Group.prototype, "UserId", void 0);
 __decorate([
     Column,
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
-__decorate([
-    Column,
-    __metadata("design:type", Number)
-], User.prototype, "age", void 0);
-__decorate([
-    Column,
-    __metadata("design:type", Boolean)
-], User.prototype, "isDeleted", void 0);
-User.init({
-    id: {
+], User_Group.prototype, "GroupId", void 0);
+User_Group.init({
+    UserId: {
         type: DataTypes.STRING,
-        allowNull: false,
-        primaryKey: true
+        references: {
+            model: User,
+            key: 'id'
+        }
     },
-    login: {
-        type: DataTypes.STRING
-    },
-    password: {
-        type: DataTypes.STRING
-    },
-    age: {
-        type: DataTypes.INTEGER
-    },
-    isDeleted: {
-        type: DataTypes.BOOLEAN
+    GroupId: {
+        type: DataTypes.STRING,
+        references: {
+            model: Group,
+            key: 'id'
+        }
     }
 }, { sequelize, timestamps: false });
-//# sourceMappingURL=userModel.js.map
+//# sourceMappingURL=user_GroupModel.js.map

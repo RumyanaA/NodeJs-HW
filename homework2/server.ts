@@ -1,5 +1,6 @@
 import express from 'express';
-import routes from './routes/userRoutes.js';
+import userRoutes from './routes/users.js';
+import groupRoutes from './routes/groups.js';
 import sequelize from './config/dbConnect.js';
 
 try {
@@ -17,7 +18,8 @@ app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
 
-app.use('/', routes);
+app.use('/', userRoutes);
+app.use('/', groupRoutes);
 
 app.locals.users = [];
 

@@ -1,45 +1,33 @@
 import sequelize from '../config/dbConnect.js';
-import { UserI } from '../interfaces/userInterface';
+import { GroupI } from '../interfaces/groupInterface.js';
 import { AllowNull, Column, PrimaryKey } from 'sequelize-typescript';
 import { Model } from 'sequelize';
 import { DataTypes } from 'sequelize';
+import { Permission } from '../types/permissionType.js';
 
-export default class User extends Model implements UserI {
+export default class Group extends Model implements GroupI {
   @PrimaryKey
   @Column
       id: string;
   @AllowNull(false)
   @Column
-      login: string;
+      name: string;
 
-  @Column
-      password: string;
-
-  @Column
-      age: number;
-
-  @Column
-      isDeleted: boolean;
+  permissions: Permission[];
 }
 
-User.init(
+Group.init(
     {
         id: {
             type: DataTypes.STRING,
             allowNull: false,
             primaryKey: true
         },
-        login: {
+        name: {
             type: DataTypes.STRING
         },
-        password: {
-            type: DataTypes.STRING
-        },
-        age: {
-            type: DataTypes.INTEGER
-        },
-        isDeleted: {
-            type: DataTypes.BOOLEAN
+        permissions: {
+            type: DataTypes.ARRAY(DataTypes.STRING)
         }
     },
     { sequelize, timestamps: false }

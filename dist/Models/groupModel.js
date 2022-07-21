@@ -11,47 +11,29 @@ import sequelize from '../config/dbConnect.js';
 import { AllowNull, Column, PrimaryKey } from 'sequelize-typescript';
 import { Model } from 'sequelize';
 import { DataTypes } from 'sequelize';
-export default class User extends Model {
+export default class Group extends Model {
 }
 __decorate([
     PrimaryKey,
     Column,
     __metadata("design:type", String)
-], User.prototype, "id", void 0);
+], Group.prototype, "id", void 0);
 __decorate([
     AllowNull(false),
     Column,
     __metadata("design:type", String)
-], User.prototype, "login", void 0);
-__decorate([
-    Column,
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
-__decorate([
-    Column,
-    __metadata("design:type", Number)
-], User.prototype, "age", void 0);
-__decorate([
-    Column,
-    __metadata("design:type", Boolean)
-], User.prototype, "isDeleted", void 0);
-User.init({
+], Group.prototype, "name", void 0);
+Group.init({
     id: {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true
     },
-    login: {
+    name: {
         type: DataTypes.STRING
     },
-    password: {
-        type: DataTypes.STRING
-    },
-    age: {
-        type: DataTypes.INTEGER
-    },
-    isDeleted: {
-        type: DataTypes.BOOLEAN
+    permissions: {
+        type: DataTypes.ARRAY(DataTypes.STRING)
     }
 }, { sequelize, timestamps: false });
-//# sourceMappingURL=userModel.js.map
+//# sourceMappingURL=groupModel.js.map
