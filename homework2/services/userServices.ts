@@ -1,5 +1,6 @@
 import { User } from '../types/userType';
 // import app from '../server.js';
+import { logInfo } from '../utilities/logging.js';
 import {
     getDBuser,
     getAutoSuggestUsers,
@@ -10,6 +11,7 @@ import {
 
 const addUser = async (user: User): Promise<void> => {
     // app.locals.users.push(user);
+    logInfo('addUser', user);
     await createUser(user);
 };
 
@@ -18,6 +20,7 @@ const getUser = async (userID: string) => {
     //     (user: User) => user.id === userID
     // );
     // return foundUser;
+    logInfo('getUser', userID);
     const foundUser = await getDBuser(userID);
     return foundUser;
 };
@@ -38,6 +41,7 @@ const getUser = async (userID: string) => {
 
 const getUsers = async (loginSubstring: string) => {
     const limit = 3;
+    logInfo('getUsers', loginSubstring);
     const suggestedUsers = await getAutoSuggestUsers(loginSubstring, limit);
     return suggestedUsers;
 };
@@ -51,10 +55,12 @@ const updateUser = async (userID: string, userDTO: User): Promise<void> => {
     // } else {
     //     app.locals.users[foundUserIndex] = userDTO;
     // }
+    logInfo('updateUser', userID, userDTO);
     await updateDBuser(userID, userDTO);
 };
 
 const removeUser = async (userID: string) => {
+    logInfo('removeUser', userID);
     const affectedCount = await deleteUser(userID);
     if (!affectedCount) {
         return {
