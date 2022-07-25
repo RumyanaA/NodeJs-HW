@@ -1,4 +1,5 @@
 import express from 'express';
+import myLogger from '../utilities/logging.js';
 import {
     addGroup,
     addUsersToGroup,
@@ -9,7 +10,7 @@ import {
 } from '../services/groupServices.js';
 const router = express.Router();
 
-router.post('/group', async (req: express.Request, res: express.Response) => {
+router.post('/group', myLogger('addGroup()'), async (req: express.Request, res: express.Response) => {
     const groupDTO = req.body;
     await addGroup(groupDTO);
     res.status(204).send();
@@ -17,6 +18,7 @@ router.post('/group', async (req: express.Request, res: express.Response) => {
 
 router.get(
     '/group/:id',
+    myLogger('getGroupByID()'),
     async (req: express.Request, res: express.Response) => {
         const groupID = req.params.id;
         const foundGroup = await getGroupByID(groupID);
@@ -28,13 +30,14 @@ router.get(
     }
 );
 
-router.get('/groups', async (req: express.Request, res: express.Response) => {
+router.get('/groups', myLogger('getAllGroups()'), async (req: express.Request, res: express.Response) => {
     const suggestedUsers = await getAllGroups();
     res.json(suggestedUsers);
 });
 
 router.put(
     '/group/:id',
+    myLogger('updateGroup()'),
     async (req: express.Request, res: express.Response) => {
         const groupID = req.params.id;
         const groupDTO = req.body;
@@ -45,6 +48,7 @@ router.put(
 
 router.put(
     '/user_group',
+    myLogger('addUsersToGroup()'),
     async (req: express.Request, res: express.Response) => {
         const user_ids = Array.isArray(req.query.userIds)
             ? req.query.userIds
@@ -57,6 +61,7 @@ router.put(
 
 router.delete(
     '/group/:id',
+    myLogger('removeGroup()'),
     async (req: express.Request, res: express.Response) => {
         const groupID = req.params.id;
         const { status, message } = await removeGroup(groupID);

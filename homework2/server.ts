@@ -19,7 +19,7 @@ const debugApp = debug('server');
 debugApp('booting app');
 
 app.listen(port, () => {
-    debugApp('listening');
+    debugApp(`Example app listening on port ${port}`);
     // console.log(`Example app listening on port ${port}`);
 });
 

@@ -8,11 +8,13 @@ import {
     updateUser,
     removeUser
 } from '../services/userServices.js';
+import myLogger from '../utilities/logging.js';
 const router = express.Router();
 
 router.post(
     '/user',
     validateSchema(userSchema),
+    myLogger('addUser()'),
     async (req: express.Request, res: express.Response) => {
         const userDTO = req.body;
         await addUser(userDTO);
@@ -20,7 +22,7 @@ router.post(
     }
 );
 
-router.get('/user/:id', async (req: express.Request, res: express.Response) => {
+router.get('/user/:id', myLogger('getUser()'), async (req: express.Request, res: express.Response) => {
     const userID = req.params.id;
     const foundUser = await getUser(userID);
     if (!foundUser) {
@@ -30,7 +32,7 @@ router.get('/user/:id', async (req: express.Request, res: express.Response) => {
     }
 });
 
-router.get('/users', async (req: express.Request, res: express.Response) => {
+router.get('/users',  myLogger('getUsers()'), async (req: express.Request, res: express.Response) => {
     const loginSubstring = req.query.loginSubstring;
     const suggestedUsers = await getUsers(loginSubstring);
     res.json(suggestedUsers);
@@ -39,6 +41,7 @@ router.get('/users', async (req: express.Request, res: express.Response) => {
 router.put(
     '/user/:id',
     validateSchema(userSchema),
+    myLogger('updateUser()'),
     async (req: express.Request, res: express.Response) => {
         const userID = req.params.id;
         const userDTO = req.body;
@@ -49,6 +52,7 @@ router.put(
 
 router.delete(
     '/user/:id',
+    myLogger('removeUser()'),
     async (req: express.Request, res: express.Response) => {
         const userID = req.params.id;
         const { status, message } = await removeUser(userID);
