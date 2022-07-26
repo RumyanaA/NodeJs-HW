@@ -23,37 +23,55 @@ router.post(
             await addUser(userDTO);
             res.status(204).send();
         } catch (e) {
-            winstonLogger.error(e.message);
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${JSON.stringify(
+                    req.body
+                )}, error message: ${e.message}`
+            );
             res.status(500).send();
         }
     }
 );
 
-router.get('/user/:id', expressLogger('getUser()'), async (req: express.Request, res: express.Response) => {
-    try {
-        const userID = req.params.id;
-        const foundUser = await getUser(userID);
-        if (!foundUser) {
-            res.status(404).json({ message: `User with id ${userID} not found` });
-        } else {
-            res.json(foundUser);
+router.get(
+    '/user/:id',
+    expressLogger('getUser()'),
+    async (req: express.Request, res: express.Response) => {
+        try {
+            const userID = req.params.id;
+            const foundUser = await getUser(userID);
+            if (!foundUser) {
+                res.status(404).json({ message: `User with id ${userID} not found` });
+            } else {
+                res.json(foundUser);
+            }
+        } catch (e) {
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${JSON.stringify(
+                    req.params.id
+                )}, error message: ${e.message}`
+            );
+            res.status(500).send();
         }
-    } catch (e) {
-        winstonLogger.error(e.message);
-        res.status(500).send();
     }
-});
+);
 
-router.get('/users',  expressLogger('getUsers()'), async (req: express.Request, res: express.Response) => {
-    try {
-        const loginSubstring = req.query.loginSubstring;
-        const suggestedUsers = await getUsers(loginSubstring);
-        res.json(suggestedUsers);
-    } catch (e) {
-        winstonLogger.error(e.message);
-        res.status(500).send();
+router.get(
+    '/users',
+    expressLogger('getUsers()'),
+    async (req: express.Request, res: express.Response) => {
+        try {
+            const loginSubstring = req.query.loginSubstring;
+            const suggestedUsers = await getUsers(loginSubstring);
+            res.json(suggestedUsers);
+        } catch (e) {
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${req.query.loginSubstring}, error message: ${e.message}`
+            );
+            res.status(500).send();
+        }
     }
-});
+);
 
 router.put(
     '/user/:id',
@@ -66,7 +84,9 @@ router.put(
             await updateUser(userID, userDTO);
             res.status(204).send();
         } catch (e) {
-            winstonLogger.error(e.message);
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${req.params.id}, ${JSON.stringify(req.body)}, error message: ${e.message}`
+            );
             res.status(500).send();
         }
     }
@@ -81,7 +101,9 @@ router.delete(
             const { status, message } = await removeUser(userID);
             res.status(status).json(message);
         } catch (e) {
-            winstonLogger.error(e.message);
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${req.params.id}, error message: ${e.message}`
+            );
             res.status(500).send();
         }
     }

@@ -10,7 +10,7 @@ router.post('/group', expressLogger('addGroup()'), async (req, res) => {
         res.status(204).send();
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${JSON.stringify(req.body)}, error message: ${e.message}`);
         res.status(500).send();
     }
 });
@@ -26,7 +26,7 @@ router.get('/group/:id', expressLogger('getGroupByID()'), async (req, res) => {
         }
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${req.params.id}, error message: ${e.message}`);
         res.status(500).send();
     }
 });
@@ -36,7 +36,7 @@ router.get('/groups', expressLogger('getAllGroups()'), async (req, res) => {
         res.json(suggestedUsers);
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method},error message: ${e.message}`);
         res.status(500).send();
     }
 });
@@ -48,7 +48,7 @@ router.put('/group/:id', expressLogger('updateGroup()'), async (req, res) => {
         res.status(204).send();
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${req.params.id}, ${JSON.stringify(req.body)}, error message: ${e.message}`);
         res.status(500).send();
     }
 });
@@ -62,7 +62,7 @@ router.put('/user_group', expressLogger('addUsersToGroup()'), async (req, res) =
         res.status(204).send();
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${req.query.groupId}, ${JSON.stringify(req.query.userIds)}, error message: ${e.message}`);
         res.status(500).send();
     }
 });
@@ -73,7 +73,7 @@ router.delete('/group/:id', expressLogger('removeGroup()'), async (req, res) => 
         res.status(status).json(message);
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${req.params.id}, error message: ${e.message}`);
         res.status(500).send();
     }
 });

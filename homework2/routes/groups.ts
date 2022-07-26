@@ -12,16 +12,22 @@ import {
 
 const router = express.Router();
 
-router.post('/group', expressLogger('addGroup()'), async (req: express.Request, res: express.Response) => {
-    try {
-        const groupDTO = req.body;
-        await addGroup(groupDTO);
-        res.status(204).send();
-    } catch (e) {
-        winstonLogger.error(e.message);
-        res.status(500).send();
+router.post(
+    '/group',
+    expressLogger('addGroup()'),
+    async (req: express.Request, res: express.Response) => {
+        try {
+            const groupDTO = req.body;
+            await addGroup(groupDTO);
+            res.status(204).send();
+        } catch (e) {
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${JSON.stringify(req.body)}, error message: ${e.message}`
+            );
+            res.status(500).send();
+        }
     }
-});
+);
 
 router.get(
     '/group/:id',
@@ -36,22 +42,31 @@ router.get(
                 res.json(foundGroup);
             }
         } catch (e) {
-            winstonLogger.error(e.message);
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${
+                    req.params.id
+                }, error message: ${e.message}`
+            );
             res.status(500).send();
         }
     }
-
 );
 
-router.get('/groups', expressLogger('getAllGroups()'), async (req: express.Request, res: express.Response) => {
-    try {
-        const suggestedUsers = await getAllGroups();
-        res.json(suggestedUsers);
-    } catch (e) {
-        winstonLogger.error(e.message);
-        res.status(500).send();
+router.get(
+    '/groups',
+    expressLogger('getAllGroups()'),
+    async (req: express.Request, res: express.Response) => {
+        try {
+            const suggestedUsers = await getAllGroups();
+            res.json(suggestedUsers);
+        } catch (e) {
+            winstonLogger.error(
+                `method: ${req.method},error message: ${e.message}`
+            );
+            res.status(500).send();
+        }
     }
-});
+);
 
 router.put(
     '/group/:id',
@@ -63,7 +78,11 @@ router.put(
             await updateGroup(groupID, groupDTO);
             res.status(204).send();
         } catch (e) {
-            winstonLogger.error(e.message);
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${
+                    req.params.id
+                }, ${JSON.stringify(req.body)}, error message: ${e.message}`
+            );
             res.status(500).send();
         }
     }
@@ -81,7 +100,11 @@ router.put(
             await addUsersToGroup(group_id, user_ids);
             res.status(204).send();
         } catch (e) {
-            winstonLogger.error(e.message);
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${
+                    req.query.groupId
+                }, ${JSON.stringify(req.query.userIds)}, error message: ${e.message}`
+            );
             res.status(500).send();
         }
     }
@@ -96,7 +119,9 @@ router.delete(
             const { status, message } = await removeGroup(groupID);
             res.status(status).json(message);
         } catch (e) {
-            winstonLogger.error(e.message);
+            winstonLogger.error(
+                `method: ${req.method}, arguments: ${req.params.id}, error message: ${e.message}`
+            );
             res.status(500).send();
         }
     }

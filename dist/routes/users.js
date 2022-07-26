@@ -12,7 +12,7 @@ router.post('/user', validateSchema(userSchema), expressLogger('addUser()'), asy
         res.status(204).send();
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${JSON.stringify(req.body)}, error message: ${e.message}`);
         res.status(500).send();
     }
 });
@@ -28,7 +28,7 @@ router.get('/user/:id', expressLogger('getUser()'), async (req, res) => {
         }
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${JSON.stringify(req.params.id)}, error message: ${e.message}`);
         res.status(500).send();
     }
 });
@@ -39,7 +39,7 @@ router.get('/users', expressLogger('getUsers()'), async (req, res) => {
         res.json(suggestedUsers);
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${req.query.loginSubstring}, error message: ${e.message}`);
         res.status(500).send();
     }
 });
@@ -51,7 +51,7 @@ router.put('/user/:id', validateSchema(userSchema), expressLogger('updateUser()'
         res.status(204).send();
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${req.params.id}, ${JSON.stringify(req.body)}, error message: ${e.message}`);
         res.status(500).send();
     }
 });
@@ -62,7 +62,7 @@ router.delete('/user/:id', expressLogger('removeUser()'), async (req, res) => {
         res.status(status).json(message);
     }
     catch (e) {
-        winstonLogger.error(e.message);
+        winstonLogger.error(`method: ${req.method}, arguments: ${req.params.id}, error message: ${e.message}`);
         res.status(500).send();
     }
 });
