@@ -10,6 +10,7 @@ import {
 } from '../services/userServices.js';
 import expressLogger from '../loggers/expressLogger.js';
 import winstonLogger from '../loggers/winstonLogger.js';
+import executionTimer from '../utilities/executionTimer.js';
 
 const router = express.Router();
 
@@ -17,6 +18,7 @@ router.post(
     '/user',
     validateSchema(userSchema),
     expressLogger('addUser()'),
+    executionTimer('addUser()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const userDTO = req.body;
@@ -36,6 +38,7 @@ router.post(
 router.get(
     '/user/:id',
     expressLogger('getUser()'),
+    executionTimer('getUser()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const userID = req.params.id;
@@ -59,6 +62,7 @@ router.get(
 router.get(
     '/users',
     expressLogger('getUsers()'),
+    executionTimer('getUsers()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const loginSubstring = req.query.loginSubstring;
@@ -77,6 +81,7 @@ router.put(
     '/user/:id',
     validateSchema(userSchema),
     expressLogger('updateUser()'),
+    executionTimer('updateUser()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const userID = req.params.id;
@@ -95,6 +100,7 @@ router.put(
 router.delete(
     '/user/:id',
     expressLogger('removeUser()'),
+    executionTimer('removeUser()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const userID = req.params.id;

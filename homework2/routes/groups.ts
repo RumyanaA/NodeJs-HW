@@ -9,12 +9,14 @@ import {
     removeGroup,
     updateGroup
 } from '../services/groupServices.js';
+import executionTimer from '../utilities/executionTimer.js';
 
 const router = express.Router();
 
 router.post(
     '/group',
     expressLogger('addGroup()'),
+    executionTimer('addGroup()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const groupDTO = req.body;
@@ -32,6 +34,7 @@ router.post(
 router.get(
     '/group/:id',
     expressLogger('getGroupByID()'),
+    executionTimer('getGroupByID()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const groupID = req.params.id;
@@ -55,6 +58,7 @@ router.get(
 router.get(
     '/groups',
     expressLogger('getAllGroups()'),
+    executionTimer('getAllGroups()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const suggestedUsers = await getAllGroups();
@@ -71,6 +75,7 @@ router.get(
 router.put(
     '/group/:id',
     expressLogger('updateGroup()'),
+    executionTimer('updateGroup()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const groupID = req.params.id;
@@ -91,6 +96,7 @@ router.put(
 router.put(
     '/user_group',
     expressLogger('addUsersToGroup()'),
+    executionTimer('addUsersToGroup()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const user_ids = Array.isArray(req.query.userIds)
@@ -113,6 +119,7 @@ router.put(
 router.delete(
     '/group/:id',
     expressLogger('removeGroup()'),
+    executionTimer('removeGroup()'),
     async (req: express.Request, res: express.Response) => {
         try {
             const groupID = req.params.id;

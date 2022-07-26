@@ -4,8 +4,9 @@ import userSchema from '../schema/userSchema.js';
 import { addUser, getUser, getUsers, updateUser, removeUser } from '../services/userServices.js';
 import expressLogger from '../loggers/expressLogger.js';
 import winstonLogger from '../loggers/winstonLogger.js';
+import executionTimer from '../utilities/executionTimer.js';
 const router = express.Router();
-router.post('/user', validateSchema(userSchema), expressLogger('addUser()'), async (req, res) => {
+router.post('/user', validateSchema(userSchema), expressLogger('addUser()'), executionTimer('addUser()'), async (req, res) => {
     try {
         const userDTO = req.body;
         await addUser(userDTO);
@@ -16,7 +17,7 @@ router.post('/user', validateSchema(userSchema), expressLogger('addUser()'), asy
         res.status(500).send();
     }
 });
-router.get('/user/:id', expressLogger('getUser()'), async (req, res) => {
+router.get('/user/:id', expressLogger('getUser()'), executionTimer('getUser()'), async (req, res) => {
     try {
         const userID = req.params.id;
         const foundUser = await getUser(userID);
@@ -32,7 +33,7 @@ router.get('/user/:id', expressLogger('getUser()'), async (req, res) => {
         res.status(500).send();
     }
 });
-router.get('/users', expressLogger('getUsers()'), async (req, res) => {
+router.get('/users', expressLogger('getUsers()'), executionTimer('getUsers()'), async (req, res) => {
     try {
         const loginSubstring = req.query.loginSubstring;
         const suggestedUsers = await getUsers(loginSubstring);
@@ -43,7 +44,7 @@ router.get('/users', expressLogger('getUsers()'), async (req, res) => {
         res.status(500).send();
     }
 });
-router.put('/user/:id', validateSchema(userSchema), expressLogger('updateUser()'), async (req, res) => {
+router.put('/user/:id', validateSchema(userSchema), expressLogger('updateUser()'), executionTimer('updateUser()'), async (req, res) => {
     try {
         const userID = req.params.id;
         const userDTO = req.body;
@@ -55,7 +56,7 @@ router.put('/user/:id', validateSchema(userSchema), expressLogger('updateUser()'
         res.status(500).send();
     }
 });
-router.delete('/user/:id', expressLogger('removeUser()'), async (req, res) => {
+router.delete('/user/:id', expressLogger('removeUser()'), executionTimer('removeUser()'), async (req, res) => {
     try {
         const userID = req.params.id;
         const { status, message } = await removeUser(userID);

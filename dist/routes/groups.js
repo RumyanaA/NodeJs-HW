@@ -2,8 +2,9 @@ import express from 'express';
 import winstonLogger from '../loggers/winstonLogger.js';
 import expressLogger from '../loggers/expressLogger.js';
 import { addGroup, addUsersToGroup, getAllGroups, getGroupByID, removeGroup, updateGroup } from '../services/groupServices.js';
+import executionTimer from '../utilities/executionTimer.js';
 const router = express.Router();
-router.post('/group', expressLogger('addGroup()'), async (req, res) => {
+router.post('/group', expressLogger('addGroup()'), executionTimer('addGroup()'), async (req, res) => {
     try {
         const groupDTO = req.body;
         await addGroup(groupDTO);
@@ -14,7 +15,7 @@ router.post('/group', expressLogger('addGroup()'), async (req, res) => {
         res.status(500).send();
     }
 });
-router.get('/group/:id', expressLogger('getGroupByID()'), async (req, res) => {
+router.get('/group/:id', expressLogger('getGroupByID()'), executionTimer('getGroupByID()'), async (req, res) => {
     try {
         const groupID = req.params.id;
         const foundGroup = await getGroupByID(groupID);
@@ -30,7 +31,7 @@ router.get('/group/:id', expressLogger('getGroupByID()'), async (req, res) => {
         res.status(500).send();
     }
 });
-router.get('/groups', expressLogger('getAllGroups()'), async (req, res) => {
+router.get('/groups', expressLogger('getAllGroups()'), executionTimer('getAllGroups()'), async (req, res) => {
     try {
         const suggestedUsers = await getAllGroups();
         res.json(suggestedUsers);
@@ -40,7 +41,7 @@ router.get('/groups', expressLogger('getAllGroups()'), async (req, res) => {
         res.status(500).send();
     }
 });
-router.put('/group/:id', expressLogger('updateGroup()'), async (req, res) => {
+router.put('/group/:id', expressLogger('updateGroup()'), executionTimer('updateGroup()'), async (req, res) => {
     try {
         const groupID = req.params.id;
         const groupDTO = req.body;
@@ -52,7 +53,7 @@ router.put('/group/:id', expressLogger('updateGroup()'), async (req, res) => {
         res.status(500).send();
     }
 });
-router.put('/user_group', expressLogger('addUsersToGroup()'), async (req, res) => {
+router.put('/user_group', expressLogger('addUsersToGroup()'), executionTimer('addUsersToGroup()'), async (req, res) => {
     try {
         const user_ids = Array.isArray(req.query.userIds)
             ? req.query.userIds
@@ -66,7 +67,7 @@ router.put('/user_group', expressLogger('addUsersToGroup()'), async (req, res) =
         res.status(500).send();
     }
 });
-router.delete('/group/:id', expressLogger('removeGroup()'), async (req, res) => {
+router.delete('/group/:id', expressLogger('removeGroup()'), executionTimer('removeGroup()'), async (req, res) => {
     try {
         const groupID = req.params.id;
         const { status, message } = await removeGroup(groupID);
