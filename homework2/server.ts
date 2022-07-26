@@ -20,11 +20,20 @@ debugApp('booting app');
 
 app.listen(port, () => {
     debugApp(`Example app listening on port ${port}`);
-    // console.log(`Example app listening on port ${port}`);
 });
 
 app.use('/', userRoutes);
 app.use('/', groupRoutes);
+
+process.on('uncaughtException', (e) => {
+    console.error('process error is:', e.message);
+    process.exit(1);
+});
+process.on('unhandledRejection', (reason, p) => {
+    console.error(reason, 'Unhandled Rejection at Promise', p);
+    process.exit(1);
+});
+
 
 app.locals.users = [];
 
