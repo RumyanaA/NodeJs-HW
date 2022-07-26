@@ -1,5 +1,5 @@
 import debug from 'debug';
-const myLogger = (serviceName) => {
+const expressLogger = (serviceName) => {
     return (req, res, next) => {
         const debugService = debug('App:Service');
         const current_datetime = new Date();
@@ -11,5 +11,5 @@ const myLogger = (serviceName) => {
         next();
     };
 };
-export default myLogger;
-//# sourceMappingURL=logging.js.map
+export default expressLogger;
+//# sourceMappingURL=expressLogger.js.map

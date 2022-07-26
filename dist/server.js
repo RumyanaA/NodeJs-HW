@@ -16,7 +16,7 @@ app.use(express.json());
 const debugApp = debug('server');
 debugApp('booting app');
 app.listen(port, () => {
-    debugApp('listening');
+    debugApp(`Example app listening on port ${port}`);
 });
 app.use('/', userRoutes);
 app.use('/', groupRoutes);
