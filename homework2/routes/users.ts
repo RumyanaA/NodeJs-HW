@@ -3,6 +3,7 @@ import validateSchema from '../utilities/utils.js';
 import userSchema from '../schema/userSchema.js';
 import {
     addUser,
+    loginUser,
     getUser,
     getUsers,
     updateUser,
@@ -13,6 +14,21 @@ import winstonLogger from '../loggers/winstonLogger.js';
 import executionTimer from '../utilities/executionTimer.js';
 
 const router = express.Router();
+
+router.post('/login', async (req: express.Request, res: express.Response) => {
+    try {
+        const { username, password } = req.body;
+        const token = await loginUser(username, password);
+        res.send(token);
+    } catch (e) {
+        winstonLogger.error(
+            `method: ${req.method}, arguments: ${JSON.stringify(
+                req.body
+            )}, error message: ${e.message}`
+        );
+        res.status(500).send(e.message);
+    }
+});
 
 router.post(
     '/user',
@@ -90,7 +106,9 @@ router.put(
             res.status(204).send();
         } catch (e) {
             winstonLogger.error(
-                `method: ${req.method}, arguments: ${req.params.id}, ${JSON.stringify(req.body)}, error message: ${e.message}`
+                `method: ${req.method}, arguments: ${req.params.id}, ${JSON.stringify(
+                    req.body
+                )}, error message: ${e.message}`
             );
             res.status(500).send();
         }

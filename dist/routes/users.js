@@ -1,11 +1,22 @@
 import express from 'express';
 import validateSchema from '../utilities/utils.js';
 import userSchema from '../schema/userSchema.js';
-import { addUser, getUser, getUsers, updateUser, removeUser } from '../services/userServices.js';
+import { addUser, loginUser, getUser, getUsers, updateUser, removeUser } from '../services/userServices.js';
 import expressLogger from '../loggers/expressLogger.js';
 import winstonLogger from '../loggers/winstonLogger.js';
 import executionTimer from '../utilities/executionTimer.js';
 const router = express.Router();
+router.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        const token = await loginUser(username, password);
+        res.send(token);
+    }
+    catch (e) {
+        winstonLogger.error(`method: ${req.method}, arguments: ${JSON.stringify(req.body)}, error message: ${e.message}`);
+        res.status(500).send(e.message);
+    }
+});
 router.post('/user', validateSchema(userSchema), expressLogger('addUser()'), executionTimer('addUser()'), async (req, res) => {
     try {
         const userDTO = req.body;
