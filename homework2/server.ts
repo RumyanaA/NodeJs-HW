@@ -2,6 +2,7 @@ import express from 'express';
 import userRoutes from './routes/users.js';
 import groupRoutes from './routes/groups.js';
 import sequelize from './config/dbConnect.js';
+import debug from 'debug';
 
 try {
     await sequelize.authenticate();
@@ -13,13 +14,26 @@ try {
 const app = express();
 const port = 3000;
 app.use(express.json());
+const debugApp = debug('server');
+
+debugApp('booting app');
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    debugApp(`Example app listening on port ${port}`);
 });
 
 app.use('/', userRoutes);
 app.use('/', groupRoutes);
+
+process.on('uncaughtException', (e) => {
+    console.error('process error is:', e.message);
+    process.exit(1);
+});
+process.on('unhandledRejection', (reason, p) => {
+    console.error(reason, 'Unhandled Rejection at Promise', p);
+    process.exit(1);
+});
+
 
 app.locals.users = [];
 

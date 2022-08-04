@@ -1,0 +1,21 @@
+error: 2022-07-26 11:38:36: Custom error
+error: 2022-07-26 11:40:07: Custom error
+error: 2022-07-26 11:40:18: Validation error
+error: 2022-07-26 11:50:16: Custom error
+error: 2022-07-26 12:08:10: Custom error
+error: 2022-07-26 12:11:35: Custom error
+error: 2022-07-26 12:12:11: Validation error
+error: 2022-07-26 12:12:58: Validation error
+error: 2022-07-26 12:14:03: Validation error
+error: 2022-07-26 12:22:01: Validation error
+error: 2022-07-26 12:22:25: Validation error
+error: 2022-07-26 12:22:39: Validation error
+error: 2022-07-26 12:23:34: Validation error
+error: 2022-07-26 12:26:28: Validation error
+error: 2022-07-26 12:31:35: undefined
+error: 2022-07-26 12:33:55: Validation error
+error: 2022-07-26 14:26:53: Validation error
+error: 2022-07-26 15:13:37: method: POST, arguments: [object Object], error message: Validation error
+error: 2022-07-26 15:14:18: method: POST, arguments: {"id":"user40","login":"adddl","password":"wlss","age":10,"isDeleted":false}, error message: Validation error
+error: 2022-07-26 15:22:57: method: POST, arguments: {"id":"user40","login":"adddl","password":"wlss","age":10,"isDeleted":false}, error message: Validation error
+error: 2022-07-26 16:13:47: method: POST, arguments: {"id":"user43","login":"adddl","password":"wlss","age":10,"isDeleted":false}, error message: Validation error

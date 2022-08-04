@@ -13,8 +13,8 @@ const getAllGroups = async () => {
 const updateGroup = async (groupID, groupDTO) => {
     await updateDBGroup(groupID, groupDTO);
 };
-const addUsersToGroup = async (group_id, user_ids) => {
-    await insertUsersToGroup(group_id, user_ids);
+const addUsersToGroup = async (groupID, userIDs) => {
+    await insertUsersToGroup(groupID, userIDs);
 };
 const removeGroup = async (groupID) => {
     const affectedCount = await deleteGroup(groupID);

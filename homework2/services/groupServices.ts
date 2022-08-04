@@ -26,8 +26,8 @@ const updateGroup = async (groupID: string, groupDTO: Group): Promise<void> => {
     await updateDBGroup(groupID, groupDTO);
 };
 
-const addUsersToGroup = async (group_id:string, user_ids:string[]):Promise<void> => {
-    await insertUsersToGroup(group_id, user_ids);
+const addUsersToGroup = async (groupID:string, userIDs:string[]):Promise<void> => {
+    await insertUsersToGroup(groupID, userIDs);
 };
 
 const removeGroup = async (groupID: string) => {
