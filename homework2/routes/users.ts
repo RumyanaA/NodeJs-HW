@@ -11,7 +11,8 @@ import {
 } from '../services/userServices.js';
 import expressLogger from '../loggers/expressLogger.js';
 import winstonLogger from '../loggers/winstonLogger.js';
-import executionTimer from '../utilities/executionTimer.js';
+import executionTimer from '../middlewares/executionTimer.js';
+import checkToken from '../middlewares/checkToken.js';
 
 const router = express.Router();
 
@@ -53,6 +54,7 @@ router.post(
 
 router.get(
     '/user/:id',
+    checkToken,
     expressLogger('getUser()'),
     executionTimer('getUser()'),
     async (req: express.Request, res: express.Response) => {
@@ -77,6 +79,7 @@ router.get(
 
 router.get(
     '/users',
+    checkToken,
     expressLogger('getUsers()'),
     executionTimer('getUsers()'),
     async (req: express.Request, res: express.Response) => {
@@ -95,6 +98,7 @@ router.get(
 
 router.put(
     '/user/:id',
+    checkToken,
     validateSchema(userSchema),
     expressLogger('updateUser()'),
     executionTimer('updateUser()'),
@@ -117,6 +121,7 @@ router.put(
 
 router.delete(
     '/user/:id',
+    checkToken,
     expressLogger('removeUser()'),
     executionTimer('removeUser()'),
     async (req: express.Request, res: express.Response) => {

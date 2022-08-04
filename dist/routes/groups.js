@@ -2,7 +2,7 @@ import express from 'express';
 import winstonLogger from '../loggers/winstonLogger.js';
 import expressLogger from '../loggers/expressLogger.js';
 import { addGroup, addUsersToGroup, getAllGroups, getGroupByID, removeGroup, updateGroup } from '../services/groupServices.js';
-import executionTimer from '../utilities/executionTimer.js';
+import executionTimer from '../middlewares/executionTimer.js';
 const router = express.Router();
 router.post('/group', expressLogger('addGroup()'), executionTimer('addGroup()'), async (req, res) => {
     try {
