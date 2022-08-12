@@ -2,6 +2,7 @@ import express from 'express';
 import userRoutes from './routes/users.js';
 import groupRoutes from './routes/groups.js';
 import sequelize from './config/dbConnect.js';
+import cors from 'cors';
 import debug from 'debug';
 
 try {
@@ -12,6 +13,7 @@ try {
 }
 
 const app = express();
+app.use(cors());
 const port = 3000;
 app.use(express.json());
 const debugApp = debug('server');

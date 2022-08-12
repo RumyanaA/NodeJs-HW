@@ -2,15 +2,27 @@ import { User } from '../types/userType';
 // import app from '../server.js';
 import {
     getDBuser,
+    getUserOnLogin,
     getAutoSuggestUsers,
     createUser,
     updateDBuser,
     deleteUser
 } from '../dataAccess/userDataAccess.js';
+import jwt from 'jsonwebtoken';
+import config from '../config/index.js';
 
 const addUser = async (user: User): Promise<void> => {
     // app.locals.users.push(user);
     await createUser(user);
+};
+
+const loginUser = async (username: string, password: string) => {
+    const foundUser = await getUserOnLogin(username, password);
+    if (!foundUser) {
+        return 'username or password is incorrect';
+    }
+    const token = jwt.sign({ username, password }, config.jwtSecret);
+    return token;
 };
 
 const getUser = async (userID: string) => {
@@ -80,4 +92,4 @@ const removeUser = async (userID: string) => {
     // };
 };
 
-export { addUser, getUser, getUsers, updateUser, removeUser };
+export { addUser, loginUser, getUser, getUsers, updateUser, removeUser };

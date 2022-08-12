@@ -11,6 +11,11 @@ const getUser = async (userID: string) => {
     return user;
 };
 
+const getUserOnLogin = async (username: string, password: string) => {
+    const user = await User.findOne({ where: { login: username, password, isDeleted: false } });
+    return user;
+};
+
 const getAutoSuggestUsers = async (loginSubstring: string, limit: number) => {
     const users = await User.findAll({
         limit,
@@ -52,6 +57,7 @@ const deleteUser = async (userID: string): Promise<number> => {
 };
 export {
     createUser,
+    getUserOnLogin,
     getAutoSuggestUsers,
     getUser as getDBuser,
     updateUser as updateDBuser,

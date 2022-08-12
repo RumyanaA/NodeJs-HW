@@ -7,6 +7,10 @@ const getUser = async (userID) => {
     const user = await User.findByPk(userID);
     return user;
 };
+const getUserOnLogin = async (username, password) => {
+    const user = await User.findOne({ where: { login: username, password, isDeleted: false } });
+    return user;
+};
 const getAutoSuggestUsers = async (loginSubstring, limit) => {
     const users = await User.findAll({
         limit,
@@ -42,5 +46,5 @@ const deleteUser = async (userID) => {
     }
     return affectedCount;
 };
-export { createUser, getAutoSuggestUsers, getUser as getDBuser, updateUser as updateDBuser, deleteUser };
+export { createUser, getUserOnLogin, getAutoSuggestUsers, getUser as getDBuser, updateUser as updateDBuser, deleteUser };
 //# sourceMappingURL=userDataAccess.js.map
