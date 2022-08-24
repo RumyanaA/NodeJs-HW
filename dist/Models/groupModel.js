@@ -12,6 +12,9 @@ import { AllowNull, Column, PrimaryKey } from 'sequelize-typescript';
 import { Model } from 'sequelize';
 import { DataTypes } from 'sequelize';
 export default class Group extends Model {
+    id;
+    name;
+    permissions;
 }
 __decorate([
     PrimaryKey,

@@ -1,8 +1,10 @@
 import dotenv from 'dotenv';
+import { absolutePath } from './dotenvPath.js';
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-const envFound = dotenv.config({ path: '../.env' });
+const envFound = dotenv.config({ path: absolutePath });
+console.log(envFound);
 if (envFound.error) {
-    throw new Error("⚠️  Couldn't find .env file  ⚠️");
+    throw new Error("⚠️  Couldn't fin .env file  ⚠️");
 }
 export default {
     username: process.env.DB_USER,

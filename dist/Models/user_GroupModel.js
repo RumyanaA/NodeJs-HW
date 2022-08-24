@@ -14,6 +14,8 @@ import { Model } from 'sequelize';
 import User from './userModel.js';
 import Group from './groupModel.js';
 export default class User_Group extends Model {
+    UserId;
+    GroupId;
 }
 __decorate([
     Column,

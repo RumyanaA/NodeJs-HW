@@ -1,11 +1,12 @@
 import dotenv from 'dotenv';
-
+import { absolutePath } from './dotenvPath.js';
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-const envFound = dotenv.config({ path: '../.env' });
+const envFound = dotenv.config({ path: absolutePath });
+console.log(envFound);
 if (envFound.error) {
     // This error should crash whole process
-    throw new Error("⚠️  Couldn't find .env file  ⚠️");
+    throw new Error("⚠️  Couldn't fin .env file  ⚠️");
 }
 
 export default {
@@ -13,10 +14,4 @@ export default {
     password: process.env.DB_PASSWORD,
     jwtSecret: process.env.JWT_SECRET
 };
-
-// export default {
-//     username:'postgres',
-//     password:'1234',
-//     jwtSecret:'1D6DA62DBDA473A8E8F462D3A5A78E270C244F040E9035D834B38F5ABF4E7B96'
-// };
 

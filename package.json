@@ -12,13 +12,22 @@
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "babel-node": "babel-node --presets='@babel/preset-env'",
-    "test": "jest --setupFiles dotenv/config",
+    "test": "jest --setupFiles dotenv/config --detectOpenHandles",
     "tes": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "transform": {},
+    "roots": [
+      "<rootDir>/homework2"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.+(ts|tsx|js)",
+      "**/?(*.)+(spec|test).+(ts|tsx|js)"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
     "extensionsToTreatAsEsm": [
       ".ts"
     ],
@@ -27,9 +36,11 @@
         "useESM": true
       }
     },
-    "setupFiles": ["dotenv/config"],
-    "setupFilesAfterEnv": [
-      "./jest.setup.js"
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
     ],
     "moduleNameMapper": {
       "^(\\.{1,2}/.*)\\.js$": "$1"
@@ -61,6 +72,7 @@
     "@typescript-eslint/parser": "^5.24.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^28.1.3",
+    "babel-plugin-transform-import-meta": "^2.2.0",
     "eslint": "^8.15.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",

@@ -12,6 +12,11 @@ import { AllowNull, Column, PrimaryKey } from 'sequelize-typescript';
 import { Model } from 'sequelize';
 import { DataTypes } from 'sequelize';
 export default class User extends Model {
+    id;
+    login;
+    password;
+    age;
+    isDeleted;
 }
 __decorate([
     PrimaryKey,
