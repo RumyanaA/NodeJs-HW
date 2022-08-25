@@ -1,0 +1,40 @@
+error: 2022-08-25 10:27:22: method: POST, arguments: undefined, error message: notNull Violation: User.id cannot be null
+error: 2022-08-25 10:33:36: method: POST, arguments: undefined, error message: notNull Violation: User.id cannot be null
+error: 2022-08-25 10:35:42: method: POST, arguments: undefined, error message: Cannot destructure property 'username' of 'req.body' as it is undefined.
+error: 2022-08-25 10:45:32: method: POST, arguments: {"id":"user62","login":"testName","password":"testPassword","age":16,"isDeleted":false}, error message: Validation error
+error: 2022-08-25 10:46:33: method: POST, arguments: {"id":"user62","login":"testName","password":"testPassword","age":16,"isDeleted":false}, error message: Validation error
+error: 2022-08-25 10:47:20: method: POST, arguments: {"id":"user62","login":"testName","password":"testPassword","age":16,"isDeleted":false}, error message: Validation error
+error: 2022-08-25 10:48:22: method: POST, arguments: {"id":"user62","login":"testName","password":"testPassword","age":16,"isDeleted":false}, error message: Validation error
+error: 2022-08-25 11:02:53: method: POST, arguments: {"password":""}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:04:06: method: POST, arguments: {"password":""}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:06:23: method: POST, arguments: {"login":"","password":""}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:06:53: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:11:42: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:14:49: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:21:17: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:23:47: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:25:35: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:27:55: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 11:29:04: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:16:55: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:33:29: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:35:51: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:36:55: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:38:01: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:41:48: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:42:56: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:43:50: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:44:17: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:46:00: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:47:37: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:48:55: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:49:30: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:54:22: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 15:56:27: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 16:00:10: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 16:00:49: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 16:01:59: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 16:05:32: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 16:07:53: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 16:08:39: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-25 16:10:30: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
