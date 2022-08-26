@@ -9,7 +9,7 @@ app.use('/', userRoutes);
 
 
 describe('login route', () => {
-    it('should return 200', (done) => {
+    it('should return status code 200', (done) => {
         request(app)
             .post('/login')
             .send({
@@ -20,7 +20,7 @@ describe('login route', () => {
             .expect(200, done);
     });
 
-    it('should return 500 and error message', (done) => {
+    it('should return status code 500 and error message', (done) => {
         request(app)
             .post('/login')
             .send({
@@ -33,7 +33,7 @@ describe('login route', () => {
 });
 
 describe('register route', () => {
-    it('should return 204 on /user route', (done) => {
+    it('should return status code 204 on /user route', (done) => {
         request(app)
             .post('/user')
             .send({
@@ -83,7 +83,7 @@ describe('authentication and get user by id', () => {
             );
     });
 
-    it('should fail to authenticate and return 401', (done) => {
+    it('should fail to authenticate and return status code 401', (done) => {
         request(app)
             .get('/user/user61')
             .set('Accept', 'application/json')

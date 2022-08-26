@@ -38,3 +38,9 @@ error: 2022-08-25 16:05:32: method: POST, arguments: {"login":"invalidName","pas
 error: 2022-08-25 16:07:53: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
 error: 2022-08-25 16:08:39: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
 error: 2022-08-25 16:10:30: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-26 10:37:57: method: POST, arguments: {"name":"randomName","permissions":["WRITE","READ","DELETE","SHARE"]}, error message: notNull Violation: Group.id cannot be null
+error: 2022-08-26 10:37:58: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-26 10:44:01: method: POST, arguments: {"name":"randomName","permissions":["WRITE","READ","DELETE","SHARE"]}, error message: notNull Violation: Group.id cannot be null
+error: 2022-08-26 10:44:02: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-26 10:44:40: method: POST, arguments: {"name":"randomName","permissions":["WRITE","READ","DELETE","SHARE"]}, error message: notNull Violation: Group.id cannot be null
+error: 2022-08-26 10:44:41: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
