@@ -1,4 +1,4 @@
-import request from 'supertest';
+import request from 'supertest'; // used to mock requests
 import express from 'express';
 import groupRoutes from '../groups';
 import { deleteGroup } from '../../utilities/deleteMockedData';
@@ -7,6 +7,7 @@ const app = new express();
 app.use(express.json());
 app.use('/', groupRoutes);
 
+// create mock group
 let mockGroup;
 beforeEach(() => {
     mockGroup = {
@@ -16,7 +17,7 @@ beforeEach(() => {
     };
 });
 
-
+// delete mocked group from DB after all tests
 afterAll(() => {
     deleteGroup(mockGroup.id);
 });

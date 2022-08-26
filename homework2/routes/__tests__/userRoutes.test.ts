@@ -19,7 +19,7 @@ beforeEach(() => {
     };
 });
 
-
+// delete mocked user from DB after all tests
 afterAll(() => {
     hardDeleteUser(mockUser.id);
 });
@@ -70,6 +70,7 @@ describe('login route', () => {
 
 describe('authentication and get user by id', () => {
     it('should authenticate and get user61', (done) => {
+        // mock jwt token authentication
         const jwtSpy = jest.spyOn(jwt, 'verify');
         jwtSpy.mockReturnValue('Some decoded token');
         request(app)

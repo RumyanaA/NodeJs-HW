@@ -12,8 +12,7 @@
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "babel-node": "babel-node --presets='@babel/preset-env'",
-    "test": "jest --setupFiles dotenv/config --detectOpenHandles",
-    "tes": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "jest --setupFiles dotenv/config --detectOpenHandles"
   },
   "jest": {
     "preset": "ts-jest",
