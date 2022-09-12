@@ -6,6 +6,8 @@ import User_Group from './user_GroupModel.js';
 User.belongsToMany(Group, { through: User_Group });
 Group.belongsToMany(User, { through: User_Group });
 
-await sequelize.sync({ alter: true });
+
+// await sequelize.sync({ alter: true });
+
 export { User, Group, User_Group };
 

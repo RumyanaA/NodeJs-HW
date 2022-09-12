@@ -1,0 +1,8 @@
+error: 2022-08-26 14:27:18: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-26 14:27:19: method: POST, arguments: {"id":"mockGroupID","name":"wrongGroupName","permissions":["WRITE","READ","DELETE","SHARE"]}, error message: Validation error
+error: 2022-08-26 14:43:35: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-26 14:43:36: method: POST, arguments: {"id":"mockGroupID","name":"wrongGroupName","permissions":["WRITE","READ","DELETE","SHARE"]}, error message: Validation error
+error: 2022-08-26 14:44:17: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value
+error: 2022-08-26 14:44:18: method: POST, arguments: {"id":"mockGroupID","name":"wrongGroupName","permissions":["WRITE","READ","DELETE","SHARE"]}, error message: Validation error
+error: 2022-08-26 14:44:46: method: POST, arguments: {"id":"mockGroupID","name":"wrongGroupName","permissions":["WRITE","READ","DELETE","SHARE"]}, error message: Validation error
+error: 2022-08-26 14:44:47: method: POST, arguments: {"login":"invalidName","password":"invalidPassword"}, error message: WHERE parameter "login" has invalid "undefined" value

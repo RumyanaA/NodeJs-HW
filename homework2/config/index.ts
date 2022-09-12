@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
-
+import { absolutePath } from './dotenvPath.js';
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-const envFound = dotenv.config({ path: '../.env' });
+const envFound = dotenv.config({ path: absolutePath });
 if (envFound.error) {
     // This error should crash whole process
     throw new Error("⚠️  Couldn't find .env file  ⚠️");
@@ -13,3 +13,4 @@ export default {
     password: process.env.DB_PASSWORD,
     jwtSecret: process.env.JWT_SECRET
 };
+

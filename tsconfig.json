@@ -1,25 +1,26 @@
 {
-    "compilerOptions": {
-      "module": "ESnext",
-      "moduleResolution": "Node",
-      "declaration": true,
-      "removeComments": true,
-      "esModuleInterop": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "allowSyntheticDefaultImports": true,
-      "target": "es2017",
-      "sourceMap": true,
-      "outDir": "./dist",
-      "baseUrl": "./",
-      "incremental": true,
-      "skipLibCheck": true,
-      "strictNullChecks": false,
-      "noImplicitAny": false,
-      "strictBindCallApply": false,
-      "forceConsistentCasingInFileNames": false,
-      "noFallthroughCasesInSwitch": false
-    },
-    "esm":true,
-  }
-  
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "declaration": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ESNext",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
+  },
+  "esm": true,
+  "include": ["homework2/**/*.ts"],
+  "exclude": ["node_modules", "dist", "./homework2/routes/__tests__", "./homework2/utilities/deleteMockedData.ts"]
+}
